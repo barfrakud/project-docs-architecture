@@ -85,7 +85,26 @@ Example:
 Create a private implementation plan, prompt, and implementation report for adding Docker deployment documentation to this repository. Use the private-first workflow.
 ```
 
-## 8. Review local changes
+## 8. Execute a saved prompt by name
+
+If the repository `AGENTS.md` defines a prompt-execution convention, you can invoke a stored prompt asset directly by its file stem.
+
+Example:
+
+```text
+Zrealizuj bootstrap-project-documentation
+```
+
+Recommended setup:
+- keep executable prompt assets in `docs/private/prompts/` or `examples/prompts/`
+- use short, unambiguous kebab-case file names
+- let `AGENTS.md` define how Codex should resolve the prompt and execute it
+
+In this repository, `Zrealizuj bootstrap-project-documentation` should resolve to:
+
+`examples/prompts/bootstrap-project-documentation.md`
+
+## 9. Review local changes
 
 After Codex edits files:
 
@@ -98,7 +117,7 @@ Recommended order:
 1. `/diff` to inspect file changes
 2. `/review` to ask Codex for a second-pass review
 
-## 9. Manage permissions
+## 10. Manage permissions
 
 If you want tighter control:
 
@@ -111,7 +130,7 @@ Choose:
 - `Auto` for normal work
 - stronger access only when you trust the repository and task
 
-## 10. Compact long sessions
+## 11. Compact long sessions
 
 After long documentation sessions:
 
@@ -137,6 +156,11 @@ This helps preserve the important context while reducing transcript bloat.
 ```text
 $documentation-workflow
 Create a private implementation plan for migrating all Docker notes into the private/public documentation structure used by this repository.
+```
+
+### Execute a reusable prompt asset
+```text
+Zrealizuj bootstrap-project-documentation
 ```
 
 ### Plan + prompt + report

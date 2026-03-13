@@ -22,3 +22,15 @@
 $documentation-workflow
 Create a private implementation plan and implementation report template for documenting a Docker-based deployment.
 ```
+
+## Existing repository migration
+
+If the repository already exists and has scattered or missing documentation, start from the example prompt:
+
+`examples/prompts/bootstrap-project-documentation.md`
+
+In a Codex session, invoke it as:
+
+`Zrealizuj bootstrap-project-documentation`
+
+The prompt tells Codex to inspect the whole project, classify existing documentation, create the private planning/reporting layer, and then refine the public documentation while staying consistent with any existing `AGENTS.md` and repo-local skills.

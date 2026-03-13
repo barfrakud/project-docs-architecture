@@ -82,6 +82,31 @@ When asked to create documentation:
 4. write complete Markdown content,
 5. cross-link related files when useful.
 
+## Prompt execution by name
+
+When the user says:
+
+`Zrealizuj <prompt-name>`
+
+treat it as a request to find and execute a reusable prompt asset from the repository.
+
+Prompt lookup order:
+- first search `docs/private/prompts/`
+- then search `examples/prompts/`
+
+Resolution rules:
+- match the exact file stem first, for example `bootstrap-project-documentation` -> `bootstrap-project-documentation.md`
+- if no exact match exists, use the closest unambiguous kebab-case match
+- after finding the file, read it fully and execute its instructions as the task
+- continue to obey this `AGENTS.md` and any applicable skills while executing the prompt
+
+Consistency rules for existing guidance:
+- if `AGENTS.md` already exists in the target repository, treat it as the primary repository guidance
+- if repo-local skills already exist, inspect and reuse them when they fit the task
+- when creating or updating `AGENTS.md` or skills, keep new content consistent with the existing structure, naming, tone, and scope
+- extend or refine existing guidance instead of replacing it blindly
+- avoid creating duplicate or conflicting skills when an existing skill can be updated or reused
+
 ## Skill routing
 
 Prefer the repo-local skill:

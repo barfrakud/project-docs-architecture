@@ -93,6 +93,7 @@ That lets you:
 └── examples/
     ├── example-task-lifecycle.md
     └── prompts/
+        ├── bootstrap-project-documentation.md
         └── codex-private-plan-example.md
 ```
 
@@ -185,6 +186,7 @@ This repository is designed for the current Codex CLI workflow:
 - `/plan`, `/review`, `/diff`, `/status`, and `/permissions` fit this documentation workflow well
 
 Read [`docs/codex-cli-usage.md`](docs/codex-cli-usage.md) for setup and usage examples.
+See [`examples/prompts/bootstrap-project-documentation.md`](examples/prompts/bootstrap-project-documentation.md) for a reusable prompt that can be executed with `Zrealizuj bootstrap-project-documentation` to bootstrap this workflow in an already existing repository.
 
 ## Fast start
 
@@ -219,6 +221,14 @@ Or let Codex choose the skill implicitly:
 Create a private implementation plan and a matching implementation report template for adding CI/CD to this repository.
 ```
 
+### Execute a saved prompt by name
+
+If the repository contains prompt assets and `AGENTS.md` defines the convention, you can invoke them directly:
+
+```text
+Zrealizuj bootstrap-project-documentation
+```
+
 ## Suggested Git usage model
 
 Use **one of these two patterns**:
@@ -230,6 +240,102 @@ When the project is ready, publish only selected files in a separate public repo
 ### Pattern B: one repo with filtered publication
 Keep `docs/private/` local or private and publish only public content.
 If needed, exclude private working docs from publication.
+
+If the repository itself is public and you do not want `docs/private/` to be pushed to that remote, add it to `.gitignore`, for example:
+
+```gitignore
+docs/private/
+```
+
+## Adapting this to an existing repository
+
+If your repository already exists and was not documented with this standard, do not rewrite everything at once. Adopt the structure incrementally.
+
+### 1. Copy the documentation scaffold
+Add these elements to the existing repository:
+
+```text
+AGENTS.md
+.agents/skills/documentation-workflow/
+docs/private/
+docs/public/
+docs/templates/
+```
+
+If you only want the minimum viable setup, start with:
+
+```text
+AGENTS.md
+.agents/skills/documentation-workflow/
+docs/private/
+docs/public/
+```
+
+### 2. Decide where private documentation will live
+Before migrating content, choose your publication model:
+- private repo with separate public output, or
+- one repo where `docs/private/` stays unpublished or filtered out.
+
+This avoids mixing internal working notes with public-facing documentation by accident.
+
+### 3. Classify what you already have
+Review the current documentation and sort it into three groups:
+- stable reader-facing docs -> keep in `README.md` or move to `docs/public/`
+- operational know-how -> move to `docs/private/manuals/`
+- rough notes, investigations, migration plans, and AI prompts -> move to `docs/private/`
+
+Do not force old material into polished public docs if it is still incomplete or exploratory.
+
+### 4. Start with a migration plan, not a full rewrite
+Create your first migration plan in:
+
+```text
+docs/private/plans/YYYY-MM-DD-docs-migration.md
+```
+
+Use it to define:
+- which existing files will stay public,
+- which notes should become manuals, reports, or concepts,
+- which outdated documents should be archived, rewritten, or deleted later.
+
+### 5. Migrate only active work first
+Apply the workflow first to current or upcoming tasks:
+- create plans in `docs/private/plans/`
+- save meaningful prompts in `docs/private/prompts/`
+- write implementation results in `docs/private/reports/`
+
+Older documentation can be reorganized gradually as you touch related parts of the project.
+
+### 6. Refine public documentation after the private layer exists
+Once private documentation starts capturing real work, update:
+- `README.md`
+- `docs/public/overview.md`
+- `docs/public/setup.md`
+- other public docs that matter for readers
+
+The public layer should be a distilled version of what has already been validated privately.
+
+### Recommended migration strategy
+
+For an existing project, this usually works best:
+
+1. add the scaffold and `AGENTS.md`
+2. create one migration plan
+3. use the private-first workflow for all new work
+4. gradually sort old docs into manuals, concepts, decisions, or public docs
+5. rewrite `README.md` only after the structure starts reflecting real usage
+
+For a reusable Codex command, keep a short prompt asset name such as:
+
+```text
+examples/prompts/bootstrap-project-documentation.md
+```
+
+Then invoke it in Codex with:
+
+```text
+Zrealizuj bootstrap-project-documentation
+```
 
 ## Naming conventions
 
