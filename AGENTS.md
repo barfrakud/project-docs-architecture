@@ -94,6 +94,10 @@ Prompt lookup order:
 - first search `docs/private/prompts/`
 - then search `examples/prompts/`
 
+Prompt location intent:
+- treat `docs/private/prompts/` as the default location for reusable prompt assets in real projects
+- treat `examples/prompts/` as template or demo material, not the primary location for active project prompts
+
 Resolution rules:
 - match the exact file stem first, for example `bootstrap-project-documentation` -> `bootstrap-project-documentation.md`
 - if no exact match exists, use the closest unambiguous kebab-case match

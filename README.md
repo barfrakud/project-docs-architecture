@@ -187,6 +187,7 @@ This repository is designed for the current Codex CLI workflow:
 
 Read [`docs/codex-cli-usage.md`](docs/codex-cli-usage.md) for setup and usage examples.
 See [`examples/prompts/bootstrap-project-documentation.md`](examples/prompts/bootstrap-project-documentation.md) for a reusable prompt that can be executed with `Zrealizuj bootstrap-project-documentation` to bootstrap this workflow in an already existing repository.
+In a real adopted project, copy that prompt into `docs/private/prompts/codex/bootstrap-project-documentation.md` rather than leaving it under `examples/`.
 
 ## Fast start
 
@@ -328,7 +329,7 @@ For an existing project, this usually works best:
 For a reusable Codex command, keep a short prompt asset name such as:
 
 ```text
-examples/prompts/bootstrap-project-documentation.md
+docs/private/prompts/codex/bootstrap-project-documentation.md
 ```
 
 Then invoke it in Codex with:
@@ -336,6 +337,9 @@ Then invoke it in Codex with:
 ```text
 Zrealizuj bootstrap-project-documentation
 ```
+
+Use `examples/prompts/` only in the template repository or for demonstrative sample prompts.
+In an actual working project, keep reusable executable prompts in `docs/private/prompts/`.
 
 ## Naming conventions
 
